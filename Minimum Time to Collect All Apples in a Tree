@@ -1,4 +1,5 @@
 //Leetcode - 1443
+//DFS algo 
 int solve(unordered_map<int,vector<int>>& adj,vector<bool>& hasApple,vector<int>& visited,int sv){
         visited[sv]=true;
         int ans=0;
