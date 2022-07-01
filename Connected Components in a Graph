@@ -1,3 +1,4 @@
+//DFS
 #include<bits/stdc++.h>
 using namespace std;
 void DFS(unordered_map<int,vector<int>>& adj,unordered_map<int,bool>& visited,int sv){
@@ -28,6 +29,55 @@ int main(){
 		if(!visited[i]){
 			cnt++;
 			DFS(adj,visited,i);
+		}
+	}
+	cout<<cnt<<endl;
+}
+//BFS
+#include<bits/stdc++.h>
+using namespace std;
+void DFS(unordered_map<int,vector<int>>& adj,unordered_map<int,bool>& visited,int sv){
+	if(visited[sv])return;
+	visited[sv]=true;
+	for(auto i:adj[sv]){
+		if(!visited[i]){
+			DFS(adj,visited,i);
+		}
+	}
+}
+void BFS(unordered_map<int,vector<int>>& adj,unordered_map<int,bool>& visited,int sv){
+	queue<int> pn;
+	pn.push(sv);
+	visited[sv] = true;
+	while(!pn.empty()){
+		int front = pn.front();pn.pop();
+		for(auto i:adj[front]){
+			if(!visited[i]){
+				pn.push(i);
+				visited[i] = true;
+			}
+		}
+	}
+}
+int main(){
+	int n,e;
+	cin>>n>>e;
+	unordered_map<int,vector<int>> adj;
+	while(e--){
+		int f,s;
+		cin>>f>>s;
+		adj[f].push_back(s);
+		adj[s].push_back(f);
+	}
+	unordered_map<int,bool> visited;
+	for(int i=1;i<=n;i++){
+		visited[i] = false;
+	}
+	int cnt=0;
+	for(int i=1;i<=n;i++){
+		if(!visited[i]){
+			cnt++;
+			BFS(adj,visited,i);
 		}
 	}
 	cout<<cnt<<endl;
