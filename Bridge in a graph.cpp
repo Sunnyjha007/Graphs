@@ -1,3 +1,4 @@
+//leetcode -> 1192 ( Critical Connections in a Network )
 #include<bits/stdc++.h>
 void solve(vector<int> adj[],vector<int>& disc,vector<int>& low,int parent,vector<bool>& visited,vector<vector<int>>& res,int &timer,int sv){
     visited[sv] = true;
